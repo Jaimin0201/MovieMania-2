@@ -7,22 +7,24 @@
 
 <h2>Movies</h2>
 
+
+@if (ViewBag.userId == "admin@admin.com")
+{<p>@Html.ActionLink("Create New", "Create")</p>}
+
 @using (Html.BeginForm("index", "Movies", FormMethod.Get))
 {
     @Html.TextBox("Searching")
     <input type="submit" value="Search" />
 }
 
-@if (ViewBag.userId == "admin@admin.com")
-{<p>@Html.ActionLink("Create New", "Create")</p>}
 
 @{string request = this.Request.Url.Query;}
 
-  @if (request != "")
-  {
-      request = request.Remove(0, 11);
-      request = request.ToLower();
-  }
+@if (request != "")
+{
+    request = request.Remove(0, 11);
+    request = request.ToLower();
+}
 
 
 

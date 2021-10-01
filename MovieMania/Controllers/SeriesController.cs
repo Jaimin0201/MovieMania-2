@@ -20,6 +20,8 @@ namespace MovieMania.Controllers
         // GET: Series
         public ActionResult Index()
         {
+
+            ViewBag.userId = User.Identity.Name;
             return View(db.Series.ToList());
         }
 

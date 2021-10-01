@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<MovieMania.Models.User>
+@using System.Globalization;
 
 @{
     ViewBag.Title = "Index";
@@ -14,6 +15,11 @@
     </p>
 }
 
+@using (Html.BeginForm("index", "Users", FormMethod.Get))
+{
+    @Html.TextBox("Searching")
+    <input type="submit" value="Search" />
+}
 
 <table class="table">
     <tr>

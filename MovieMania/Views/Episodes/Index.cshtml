@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<MovieMania.Models.Episode>
+@using System.Globalization;
 
 @{
     ViewBag.Title = "Index";
@@ -9,6 +10,20 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@using (Html.BeginForm("index", "Episodes", FormMethod.Get))
+{
+    @Html.TextBox("Searching")
+    <input type="submit" value="Search" />
+}
+@{string request = this.Request.Url.Query;}
+
+@if (request != "")
+{
+    request = request.Remove(0, 11);
+    request = request.ToLower();
+}
+
 <table class="table">
     <tr>
         <th>
@@ -44,6 +59,16 @@
 
     @foreach (var item in Model)
     {
+
+        if (!String.IsNullOrEmpty(request))
+        {
+            string episode = item.Title.ToLower();
+
+            if (!episode.Contains(request))
+            {
+                continue;
+            }
+        }
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
@@ -73,8 +98,7 @@
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.EpisodeId }) |
                 @Html.ActionLink("Details", "Details", new { id = item.EpisodeId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.EpisodeId }) |
-                <a href="">Play</a>
+                @Html.ActionLink("Delete", "Delete", new { id = item.EpisodeId }) 
             </td>
         </tr>
     }

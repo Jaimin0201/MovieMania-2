@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace MovieMania.Models
 {
@@ -14,6 +15,7 @@ namespace MovieMania.Models
             this.Users = new HashSet<User>();
         }
 
+        
         public int EpisodeId { get; set; }
         public string Title { get; set; }
         public string SerieName { get; set; }
