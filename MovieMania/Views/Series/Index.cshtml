@@ -6,9 +6,11 @@
 
 <h2>Series</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
+
+@if (ViewBag.userId == "admin@admin.com")
+{<p>@Html.ActionLink("Create New", "Create")</p>}
+
 <table class="table">
     <tr>
         <th>
@@ -47,9 +49,16 @@
                 @Html.DisplayFor(modelItem => item.SeasonsNumber)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.SerieId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.SerieId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.SerieId })
+
+                @if (ViewBag.userId == "admin@admin.com")
+                {
+                    @Html.ActionLink("Edit | ", "Edit", new { id = item.SerieId }) 
+                    @Html.ActionLink("Details | ", "Details", new { id = item.SerieId })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.SerieId })
+
+                }else{
+                    @Html.ActionLink("Details", "Details", new { id = item.SerieId })
+                }
             </td>
         </tr>
     }
