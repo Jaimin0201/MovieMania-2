@@ -1,0 +1,87 @@
+﻿@model MovieMania.Models.Movie
+@using System.Globalization;
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Movies Details</h2>
+
+<div>
+    <h4>Movie</h4>
+
+    <dl class="dl-horizontal">
+        <dt>
+            Mvie title:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MovieTitle)
+        </dd>
+
+        <dt>
+            Hours:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DurationHours)
+        </dd>
+
+        <dt>
+            Min:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DurationMin)
+        </dd>
+
+        <dt>
+            Release date:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReleaseDate)
+        </dd>
+
+        <dt>
+            Description:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            Cover:
+        </dt>
+
+        <dd>
+            <img src=@("../../"+ Model.FilePath) width="180" height="270" />
+        </dd>
+    </dl>
+
+
+
+    @{
+        // Creates a TextInfo based on the "en-US" culture.
+        TextInfo myTI = new CultureInfo("en-US", false).TextInfo;
+        string moviePath = myTI.ToTitleCase(Model.MovieTitle);
+        moviePath = moviePath.Replace(" ", "");
+        moviePath = "../../images/" + moviePath + ".mp4";
+    }
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Video</h2>
+            <video width="320" height="240" controls>
+                <source src="@moviePath" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MovieId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

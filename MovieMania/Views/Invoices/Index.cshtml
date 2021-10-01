@@ -1,0 +1,48 @@
+﻿@model IEnumerable<MovieMania.Models.Invoice>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Invoice</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Payment Method:
+        </th>
+        <th>
+            Subscription date:
+        </th>
+        <th>
+            Ending date:
+        </th>
+        <th>
+            Actions:
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentMethod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubscriptionDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccessLimitDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.InvoiceId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.InvoiceId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.InvoiceId })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,82 @@
+﻿@model IEnumerable<MovieMania.Models.Episode>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Episodes</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Title:
+        </th>
+        <th>
+            Serie Name:
+        </th>
+        <th>
+            Season number:
+        </th>
+        <th>
+            Episode number:
+        </th>
+        <th>
+            Hours:
+        </th>
+        <th>
+            Min:
+        </th>
+        <th>
+            Release date:
+        </th>
+
+        <th>
+            Description:
+        </th>
+
+        <th>
+            Actions:
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SerieName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SeasonNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EpisodeNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DurationHours)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DurationMin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReleaseDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.EpisodeId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.EpisodeId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.EpisodeId }) |
+                <a href="">Play</a>
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,42 @@
+﻿@model MovieMania.Models.Invoice
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Invoice Details</h2>
+
+<div>
+    <h4>Invoice</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Payment Method:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaymentMethod)
+        </dd>
+
+        <dt>
+            Subscription date:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubscriptionDate)
+        </dd>
+
+        <dt>
+            Ending date:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccessLimitDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.InvoiceId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

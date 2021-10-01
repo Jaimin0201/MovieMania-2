@@ -1,0 +1,85 @@
+﻿@model MovieMania.Models.Serie
+
+@{
+    ViewBag.Title = "Details";
+}
+@using System.Collections.Generic;
+@using System.Collections.Specialized;
+@using MovieMania.Models;
+
+<h2>Series Details</h2>
+
+<div>
+    <h4>Serie</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Serie title:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SerieTitle)
+        </dd>
+
+        <dt>
+            Description:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SerieDescription)
+        </dd>
+
+
+
+        <dd>
+            @Html.DisplayFor(model => model.Cover)
+        </dd>
+
+        <dt>
+            Seasons:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SeasonsNumber)
+        </dd>
+        <dt>
+            Cover:
+        </dt>
+        <dd>
+            <img src=@("../../"+ Model.FilePath) width="180" height="270" />
+            <br />
+            <br />
+        </dd>
+        <dt>
+            Choose the episode:
+        </dt>
+
+        <dd>
+            @using (Html.BeginForm())
+            {
+                List<Episode> episodesList = ViewBag.episodes;
+                string[] arrayEpisodesList = new string[episodesList.Count];
+
+                int i = 1;
+
+                foreach (var episode in episodesList)
+                {
+                    if (Model.SerieTitle != episode.SerieName)
+                    {
+                        continue;
+                    }
+
+                    string path = "../../Episodes/Details/" + episode.EpisodeId;
+
+                    <p><a class="btn btn-default" href="@path">Episode @i</a></p>
+                    i++;
+                }
+
+            }
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SerieId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

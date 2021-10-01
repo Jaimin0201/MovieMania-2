@@ -1,0 +1,102 @@
+﻿@model MovieMania.Models.Episode
+@using System.Globalization;
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Episode Details</h2>
+
+<div>
+    <h4>Episode</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Title:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            Serie Name:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SerieName)
+        </dd>
+        <dt>
+            Season number:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SeasonNumber)
+        </dd>
+
+
+        <dt>
+            Episode number:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EpisodeNumber)
+        </dd>
+
+        <dt>
+            Hours:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DurationHours)
+        </dd>
+
+        <dt>
+            Min:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DurationMin)
+        </dd>
+
+        <dt>
+            Release date:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReleaseDate)
+        </dd>
+
+        <dt>
+            Description:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+            <br />
+            <br />
+
+        </dd>
+
+        @{
+            // Creates a TextInfo based on the "en-US" culture.
+            TextInfo myTI = new CultureInfo("en-US", false).TextInfo;
+            string moviePath = myTI.ToTitleCase(Model.SerieName);
+            moviePath = moviePath.Replace(" ", "");
+            moviePath = "../../images/" + moviePath + "S" + Model.SeasonNumber + "E" + Model.EpisodeNumber + ".mp4";
+        }
+
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Video</h2>
+                <video width="320" height="240" controls>
+                    <source src="@moviePath" type="video/mp4">
+                </video>
+            </div>
+        </div>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EpisodeId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
